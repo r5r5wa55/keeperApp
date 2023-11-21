@@ -19,15 +19,25 @@ function App() {
 
   }
 
+  function deleteNote(id){
+    setFullText(perVe=>{
+      return perVe.filter((items,index)=>{
+        return index !== id
+      })
+    })
+  }
+
   return (
     <div>
       <Header />
       <CreateArea onChange={addInput}/>
-      {fullText.map(note=>{
+      {fullText.map((note,index)=>{
         return  <Note 
-  
+        key={index}
+        id={index}
         title={note.title}
-        content={note.content} />
+        content={note.content} 
+        onDelete={deleteNote}/>
       })}
      
       <Footer />
